@@ -111,7 +111,7 @@
       .hero h1{font-size:28px}
     }
   </style>
-
+login
 </head>
 <body>
 
@@ -142,7 +142,7 @@
   <div class="kategori-box">
 
     <div class="kategori-card" onclick="location.href='MENU MAKANAN.html'">
-      <img src="download.jpg" alt="Makanan">
+      <img src="asset/download.jpg" alt="Makanan">
       <div>
         <h3>Makanan</h3>
         <p>Nasi, lauk, Aneka Jajan</p>
@@ -151,7 +151,7 @@
     </div>
 
     <div class="kategori-card" onclick="location.href='MENU MINUMAN.html'">
-      <img src="download.png" alt="Minuman">
+      <img src="asset/download.png" alt="Minuman">
       <div>
         <h3>Minuman</h3>
         <p>Minuman segar & hangat</p>
@@ -173,7 +173,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
   if(!currentUser){
     // Redirect to login if not logged in
-    window.location.href = 'LOGIN.html';
+    window.location.href = 'INDEX.html';
     return;
   }
   
@@ -192,7 +192,7 @@ function logout(){
     localStorage.removeItem('currentUser');
     
     // Redirect to login
-    window.location.href = 'LOGIN.html';
+    window.location.href = 'INDEX.html';
   }
 }
 </script>
