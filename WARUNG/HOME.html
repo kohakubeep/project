@@ -2,250 +2,198 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Menu Makanan | Warung Bunda Sri</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warung Bunda Sri</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:'Inter',sans-serif;
-      background:#f5f7fa;
-      color:#333;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:#f5f7fa;color:#333}
 
     /* NAVBAR */
     .navbar{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 32px;background:#ffffff;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+      flex-wrap:wrap;
+      gap:15px;
+    }
+    .logo{font-weight:700;color:#ff5722;font-size:20px}
+    .nav-link{list-style:none;display:flex;gap:20px;align-items:center}
+    .nav-link a{text-decoration:none;color:#555;font-weight:500;transition:color .3s}
+    .nav-link a:hover{color:#ff5722}
+    
+    .user-section{
       display:flex;
-      justify-content:space-between;
       align-items:center;
-      padding:14px 32px;
-      background:#ffffff;
-      box-shadow:0 2px 10px rgba(0,0,0,.08);
+      gap:12px;
     }
-    .navbar a{text-decoration:none}
-    .brand{
-      font-size:20px;
-      font-weight:700;
-      color:#ff5722;
+    
+    .user-info{
+      background:#f5f7fa;
+      padding:6px 14px;
+      border-radius:8px;
+      font-size:14px;
+      font-weight:500;
+      color:#555;
     }
-    .nav-actions a{
-      margin-left:12px;
+    
+    .btn-logout{
+      background:#ff5722;
+      color:#fff;
       padding:8px 16px;
-      border-radius:20px;
-      font-size:14px;
-      font-weight:600;
-      border:1.5px solid #ff5722;
-      color:#ff5722;
-    }
-    .nav-actions a:hover{
-      background:#ff5722;
-      color:#fff;
-    }
-
-    /* TITLE */
-    .page-title{
-      text-align:center;
-      margin:40px 0 10px;
-    }
-    .page-title h1{
-      font-size:28px;
-      font-weight:700;
-    }
-    .page-title p{
-      color:#666;
-      font-size:14px;
-    }
-
-    /* GRID */
-    .container{padding:0 8%}
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:22px;
-      margin-top:30px;
-    }
-
-    /* CARD */
-    .card{
-      background:#fff;
-      border-radius:14px;
-      overflow:hidden;
-      box-shadow:0 6px 18px rgba(0,0,0,.08);
-      transition:.25s;
-    }
-    .card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 14px 30px rgba(0,0,0,.15);
-    }
-    .card img{
-      width:100%;
-      height:150px;
-      object-fit:cover;
-    }
-    .card-body{
-      padding:14px;
-    }
-    .card-body h4{
-      font-size:16px;
-      margin-bottom:6px;
-    }
-    .price{
-      color:#ff5722;
-      font-weight:700;
-      font-size:14px;
-    }
-
-    .btn-cart{
-      margin-top:10px;
-      width:100%;
-      background:#ff5722;
-      color:#fff;
       border:none;
-      padding:9px;
-      border-radius:20px;
-      font-size:14px;
+      border-radius:8px;
       font-weight:600;
+      font-size:14px;
+      cursor:pointer;
+      transition:background .3s;
+    }
+    
+    .btn-logout:hover{
+      background:#e64a19;
+    }
+
+    /* HERO */
+    .hero{
+      padding:60px 20px;text-align:center;background:#ffffff;margin-bottom:40px
+    }
+    .hero h1{font-size:36px;font-weight:700;margin-bottom:10px}
+    .hero p{color:#666;margin-bottom:25px}
+    .btn-primary{
+      background:#ff5722;color:#fff;padding:10px 28px;border-radius:8px;
+      text-decoration:none;font-weight:600;display:inline-block;
+      transition:background .3s;
+    }
+    .btn-primary:hover{background:#e64a19}
+
+    /* KATEGORI */
+    .kategori{padding:0 8%}
+    .kategori h2{text-align:center;font-size:26px;margin-bottom:30px}
+    .kategori-box{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px
+    }
+    .kategori-card{
+      background:#ffffff;border-radius:12px;padding:18px;
+      display:flex;align-items:center;gap:15px;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+      transition:transform .2s;
       cursor:pointer;
     }
-    .btn-cart:hover{background:#e64a19}
-
-    /* FLOATING CART */
-    .floating-cart{
-      position:fixed;
-      right:22px;
-      bottom:22px;
-      background:#ff5722;
-      color:#fff;
-      padding:14px 20px;
-      border-radius:30px;
-      font-weight:700;
-      text-decoration:none;
-      box-shadow:0 10px 25px rgba(0,0,0,.25);
+    .kategori-card:hover{transform:translateY(-4px)}
+    .kategori-card img{
+      width:70px;height:70px;border-radius:10px;object-fit:cover
     }
-
-    /* EMPTY STATE */
-    .empty-state{
-      text-align:center;
-      padding:60px 20px;
-      color:#6c757d;
-      grid-column:1/-1;
-    }
-    .empty-state-icon{
-      font-size:80px;
-      opacity:.3;
-      margin-bottom:20px;
+    .kategori-card h3{font-size:18px;margin-bottom:4px}
+    .kategori-card p{font-size:13px;color:#666;margin-bottom:8px}
+    .btn-secondary{
+      font-size:13px;color:#ff5722;text-decoration:none;font-weight:600
     }
 
     footer{
-      margin-top:70px;
-      padding:18px;
-      background:#212529;
-      color:#fff;
-      text-align:center;
-      font-size:13px;
+      margin-top:60px;padding:18px;text-align:center;
+      background:#212529;color:#fff;font-size:13px
     }
 
-    @media(max-width:600px){
-      .container{padding:0 5%}
-      .page-title h1{font-size:24px}
+    @media(max-width:768px){
+      .navbar{
+        padding:14px 20px;
+      }
+      .nav-link{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+      .user-section{
+        width:100%;
+        justify-content:center;
+      }
+      .hero h1{font-size:28px}
     }
   </style>
-</head>
 
+</head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
-  <a href="HOME.html" class="brand">🍽️ Warung Bunda Sri</a>
-  <div class="nav-actions">
-    <a href="HOME.html">Home</a>
-    <a href="KERANJANG PESANAN.html">Keranjang</a>
+  <div class="logo">🍽️ Warung Bunda Sri</div>
+  
+  <ul class="nav-link">
+    <li><a href="MENU MAKANAN.html">Makanan</a></li>
+    <li><a href="MENU MINUMAN.html">Minuman</a></li>
+    <li><a href="KERANJANG PESANAN.html">Keranjang</a></li>
+  </ul>
+  
+  <div class="user-section">
+    <div class="user-info" id="userName">👤 User</div>
+    <button class="btn-logout" onclick="logout()">Keluar</button>
   </div>
 </nav>
 
-<!-- TITLE -->
-<div class="page-title">
-  <h1>🍛 Menu Makanan</h1>
-  <p>Pilihan masakan dan cemilan favorit</p>
-</div>
+<section class="hero">
+  <h1>Selamat Datang </h1>
+  <p>Silahkan Pilih Apa Yang Ingin Dicari?</p>
+  <a href="#kategori" class="btn-primary">Mulai Pesan</a>
+</section>
 
-<!-- CONTENT -->
-<div class="container">
-  <div class="grid" id="foodGrid"></div>
-</div>
+<section id="kategori" class="kategori">
+  <h2>Kategori Menu</h2>
 
-<!-- FLOATING CART -->
-<a href="KERANJANG PESANAN.html" class="floating-cart">🛒 Lihat Keranjang</a>
+  <div class="kategori-box">
+
+    <div class="kategori-card" onclick="location.href='MENU MAKANAN.html'">
+      <img src="download.jpg" alt="Makanan">
+      <div>
+        <h3>Makanan</h3>
+        <p>Nasi, lauk, Aneka Jajan</p>
+        <a href="MENU MAKANAN.html" class="btn-secondary">Lihat Menu →</a>
+      </div>
+    </div>
+
+    <div class="kategori-card" onclick="location.href='MENU MINUMAN.html'">
+      <img src="download.png" alt="Minuman">
+      <div>
+        <h3>Minuman</h3>
+        <p>Minuman segar & hangat</p>
+        <a href="MENU MINUMAN.html" class="btn-secondary">Lihat Menu →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <footer>
-  © 2025 Warung Bunda Sri — Menu Makanan
+  © 2025 Warung Bunda Sri 
 </footer>
 
 <script>
-// Ambil menu dari localStorage
-const menus = JSON.parse(localStorage.getItem('menus')) || [];
-const foods = menus.filter(m => m.category === 'makanan');
-const grid = document.getElementById("foodGrid");
+// Check login status
+window.addEventListener('DOMContentLoaded', () => {
+  const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  
+  if(!currentUser){
+    // Redirect to login if not logged in
+    window.location.href = 'LOGIN.html';
+    return;
+  }
+  
+  // Display user name
+  const userName = document.getElementById('userName');
+  if(currentUser.status === 'guest'){
+    userName.textContent = '👤 Tamu';
+  } else {
+    userName.textContent = '👤 ' + currentUser.nama;
+  }
+});
 
-// Jika tidak ada menu
-if (foods.length === 0) {
-  grid.innerHTML = `
-    <div class="empty-state">
-      <div class="empty-state-icon">🍽️</div>
-      <h4>Belum Ada Menu Makanan</h4>
-      <p>Menu makanan belum ditambahkan oleh admin</p>
-    </div>
-  `;
-} else {
-  grid.innerHTML = foods.map(item => `
-    <div class="card">
-      <img src="${item.image}" alt="${item.name}"
-           onerror="this.src='https://via.placeholder.com/220x150?text=No+Image'">
-      <div class="card-body">
-        <h4>${item.name}</h4>
-        <div class="price">Rp ${item.price.toLocaleString('id-ID')}</div>
-        <button class="btn-cart"
-          onclick="addCart('${item.name.replace(/'/g, "\\'")}', ${item.price})">
-          Tambah ke Keranjang
-        </button>
-      </div>
-    </div>
-  `).join('');
-}
-
-// Tambah ke keranjang
-function addCart(name, price){
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  cart.push({ name, price });
-  localStorage.setItem('cart', JSON.stringify(cart));
-  showNotification(name + ' ditambahkan ke keranjang');
-}
-
-// Notifikasi
-function showNotification(message){
-  const old = document.querySelector('.notification');
-  if(old) old.remove();
-
-  const notif = document.createElement('div');
-  notif.className = 'notification';
-  notif.textContent = message;
-  notif.style.cssText = `
-    position:fixed;
-    top:20px;
-    right:20px;
-    background:#198754;
-    color:#fff;
-    padding:15px 25px;
-    border-radius:12px;
-    box-shadow:0 5px 20px rgba(0,0,0,.2);
-    z-index:9999;
-  `;
-  document.body.appendChild(notif);
-
-  setTimeout(() => notif.remove(), 2000);
+function logout(){
+  if(confirm('Apakah Anda yakin ingin keluar?')){
+    // Remove current user
+    localStorage.removeItem('currentUser');
+    
+    // Redirect to login
+    window.location.href = 'LOGIN.html';
+  }
 }
 </script>
 
